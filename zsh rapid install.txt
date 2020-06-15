@@ -1,0 +1,25 @@
+sudo apt install git zsh -y
+
+# install Oh My Zsh
+zsh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+############## zsh plugins #############
+
+# install 3 best plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+
+# change zsh plugins config
+sed -i".`date +%Y%m%d_%H%M%S`.pre-power10k" '/^plugins=(.*/ a plugins+=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions)' ~/.zshrc
+
+
+############## power10k #############
+# todo: install power10k fonts.
+# https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# set ZSH_THEME="powerlevel10k/powerlevel10k"
+sed -i"" 's/^ZSH_THEME=.*/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/' ~/.zshrc
+
